@@ -9,13 +9,17 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import './style/reset.css'
 import store from "./store/store"
+import "./config/util"
 Vue.use(ElementUI);
+import echarts from 'echarts'
 
 //定义全局变量
 Vue.prototype.$post=post;
 Vue.prototype.$fetch=fetch;
 Vue.prototype.$patch=patch;
 Vue.prototype.$put=put;
+Vue.prototype.$echarts = echarts 
+
 
 Vue.config.productionTip = false
 

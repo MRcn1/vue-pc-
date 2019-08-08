@@ -1,8 +1,10 @@
 import axios from 'axios'
 
 axios.defaults.timeout = 5000;
-axios.defaults.baseURL ='api';
-axios.defaults.headers ={"Content-Type":'multipart/form-data'}
+axios.defaults.baseURL = 'djysit/api';
+axios.defaults.headers = {
+  "Content-Type": 'application/json'
+}
 
 //http request 拦截器
 axios.interceptors.request.use(
@@ -24,10 +26,12 @@ axios.interceptors.request.use(
 //http response 拦截器
 axios.interceptors.response.use(
   response => {
-    if(response.data.errCode ==2){
+    if (response.data.errCode == 2) {
       router.push({
-        path:"/login",
-        querry:{redirect:router.currentRoute.fullPath}//从哪个页面跳转
+        path: "/login",
+        querry: {
+          redirect: router.currentRoute.fullPath
+        } //从哪个页面跳转
       })
     }
     return response;
@@ -37,7 +41,6 @@ axios.interceptors.response.use(
   }
 )
 
-
 /**
  * 封装get方法
  * @param url
@@ -45,17 +48,18 @@ axios.interceptors.response.use(
  * @returns {Promise}
  */
 
-export function fetch(url,params={}){
-  return new Promise((resolve,reject) => {
-    axios.get(url,{
-      params:params
-    })
-    .then(response => {
-      resolve(response.data);
-    })
-    .catch(err => {
-      reject(err)
-    })
+export function fetch(url, params = {},headers) {
+  return new Promise((resolve, reject) => {
+    axios.get(url, {
+        params: params,
+        headers:headers.headers
+      })
+      .then(response => {
+        resolve(response.data);
+      })
+      .catch(err => {
+        reject(err)
+      })
   })
 }
 
@@ -67,49 +71,49 @@ export function fetch(url,params={}){
  * @returns {Promise}
  */
 
- export function post(url,data = {}){
-   return new Promise((resolve,reject) => {
-     axios.post(url,data)
-          .then(response => {
-            resolve(response.data);
-          },err => {
-            reject(err)
-          })
-   })
- }
+export function post(url, data = {}) {
+  return new Promise((resolve, reject) => {
+    axios.post(url, data)
+      .then(response => {
+        resolve(response.data);
+      }, err => {
+        reject(err)
+      })
+  })
+}
 
- /**
+/**
  * 封装patch请求
  * @param url
  * @param data
  * @returns {Promise}
  */
 
-export function patch(url,data = {}){
-  return new Promise((resolve,reject) => {
-    axios.patch(url,data)
-         .then(response => {
-           resolve(response.data);
-         },err => {
-           reject(err)
-         })
+export function patch(url, data = {}) {
+  return new Promise((resolve, reject) => {
+    axios.patch(url, data)
+      .then(response => {
+        resolve(response.data);
+      }, err => {
+        reject(err)
+      })
   })
 }
 
- /**
+/**
  * 封装put请求
  * @param url
  * @param data
  * @returns {Promise}
  */
 
-export function put(url,data = {}){
-  return new Promise((resolve,reject) => {
-    axios.put(url,data)
-         .then(response => {
-           resolve(response.data);
-         },err => {
-           reject(err)
-         })
+export function put(url, data = {}) {
+  return new Promise((resolve, reject) => {
+    axios.put(url, data)
+      .then(response => {
+        resolve(response.data);
+      }, err => {
+        reject(err)
+      })
   })
 }

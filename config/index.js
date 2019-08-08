@@ -11,12 +11,12 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-        '/api': {
-            target: 'http://lm-erp-admin-os.donaldhan.cn/#/',
+        '/djysit/api': {
+            target: 'https://desyb2.do1.net.cn',
             changeOrigin: true,
-            pathRewrite: {
-                '^/api': ''
-            }
+            // pathRewrite: {
+            //     '^/djysit/api': ''
+            // }
         }
     },
 
