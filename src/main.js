@@ -13,6 +13,8 @@ import "./config/util"
 Vue.use(ElementUI);
 import echarts from 'echarts'
 
+import VueCropper from 'vue-cropper'
+Vue.use(VueCropper)
 //定义全局变量
 Vue.prototype.$post=post;
 Vue.prototype.$fetch=fetch;

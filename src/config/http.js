@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import qs from 'qs'
 axios.defaults.timeout = 5000;
 axios.defaults.baseURL = 'djysit/api';
 axios.defaults.headers = {
@@ -9,13 +9,11 @@ axios.defaults.headers = {
 //http request 拦截器
 axios.interceptors.request.use(
   config => {
-    // const token = getCookie('名称');注意使用的时候需要引入cookie方法，推荐js-cookie
-    // config.headers = {
-    //   'Content-Type':'multipart/form-data'
-    // }
-    // if(token){
-    //   config.params = {'token':token}
-    // }
+    config.headers = {
+      'X-Auth0-Token':sessionStorage.token,
+      "Content-Type": 'application/x-www-form-urlencoded; charset=UTF-8'
+    }
+    config.data = qs.stringify(config.data)
     return config;
   },
   error => {
@@ -48,11 +46,10 @@ axios.interceptors.response.use(
  * @returns {Promise}
  */
 
-export function fetch(url, params = {},headers) {
+export function fetch(url, params = {}) {
   return new Promise((resolve, reject) => {
     axios.get(url, {
         params: params,
-        headers:headers.headers
       })
       .then(response => {
         resolve(response.data);

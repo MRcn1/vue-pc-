@@ -1,8 +1,6 @@
 <template>
     <div class='layout'>
-        <nav-header></nav-header>
         <div class="app-main">
-            <nav-left></nav-left>
             <main-content></main-content>
         </div>
     </div>
@@ -35,7 +33,7 @@
 }
 .app-main{
     display: flex;
-    height: calc(100% - 60px); 
+    height: 100vh; 
     .mainContent{
         width: 100%;
         background-color: #fafafa;
